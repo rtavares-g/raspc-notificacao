@@ -15,13 +15,29 @@ notifica só quando `presenca` muda (o estado ao iniciar serve de referência):
 Falhas temporárias (rede, servidor, excesso de requisições) são tentadas de
 novo até 3 vezes; chave inválida ou parâmetro errado só vão para o log.
 
+## Instalação
+
+```
+git clone https://github.com/rtavares-g/raspc-notificacao.git ~/raspc-notificacao
+cd ~/raspc-notificacao
+./install.sh
+```
+
+O `install.sh` instala as dependências, cria o `.env` a partir do
+`.env.example` pedindo a API Key (se o `.env` ainda não existir), cria o
+`venv`, instala e inicia o serviço e oferece enviar uma notificação de teste.
+Pode ser rodado de novo para reinstalar/atualizar.
+
 ## Arquivos
 
 | Arquivo | Função |
 |---|---|
 | `notificar_presenca.py` | monitora o `estado.json` e envia as notificações |
+| `install.sh` | instalação/reinstalação completa |
 | `raspc-notificacao.service` | unit do systemd (cópia instalada em `/etc/systemd/system/`) |
 | `.env` | chave da API (`RASPC_APIKEY`), `chmod 600`, não compartilhar |
+| `.env.example` | modelo do `.env` |
+| `requirements.txt` | dependências Python (`raspc-notif`) |
 | `venv/` | ambiente Python com a biblioteca `raspc_notif` |
 
 ## Configuração
@@ -42,13 +58,7 @@ Variáveis opcionais (ambiente):
 
 ## Serviço
 
-```
-sudo cp raspc-notificacao.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable --now raspc-notificacao
-```
-
-Sobe depois do `presenca-quarto` e reinicia sozinho em 5 s se cair.
+Instalado pelo `install.sh`. Sobe depois do `presenca-quarto` e reinicia sozinho em 5 s se cair.
 
 ```
 journalctl -u raspc-notificacao -f        # log ao vivo
