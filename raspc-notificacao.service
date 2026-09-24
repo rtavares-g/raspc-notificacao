@@ -1,0 +1,22 @@
+[Unit]
+Description=Notificacoes RaspController de presenca no quarto
+After=network-online.target presenca-quarto.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=raspberry
+Group=raspberry
+
+WorkingDirectory=/home/raspberry/raspc-notificacao
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/raspberry/raspc-notificacao/venv/bin/python /home/raspberry/raspc-notificacao/notificar_presenca.py
+
+Restart=always
+RestartSec=5
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
