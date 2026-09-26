@@ -18,7 +18,7 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-from raspc_notif import notif
+from raspc_notif import notif  # type: ignore[import-untyped]
 
 RAIZ = Path(__file__).resolve().parent
 ARQUIVO_ESTADO = Path(os.environ.get(
