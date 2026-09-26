@@ -55,6 +55,8 @@ Variáveis opcionais (ambiente):
 | `RASPC_APIKEY` | — | tem prioridade sobre o `.env` |
 | `ARQUIVO_ESTADO` | `~/presenca-quarto/estado.json` | arquivo de estado monitorado |
 | `INTERVALO_SEG` | `1.0` | intervalo de leitura do arquivo |
+| `ESTABILIZAR_PRESENCA_SEG` | `0` | tempo que a presença precisa durar no arquivo para notificar |
+| `ESTABILIZAR_AUSENCIA_SEG` | `60` | tempo que a ausência precisa durar no arquivo para notificar; filtra as falhas curtas de detecção do sensor |
 
 ## Serviço
 
