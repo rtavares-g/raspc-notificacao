@@ -111,8 +111,8 @@ def main() -> None:
 
     # Estado lido do arquivo que ainda não durou o bastante para valer, e
     # desde quando (time.time()) o arquivo o mostra sem interrupção.
-    candidato = None
-    candidato_desde = None
+    candidato: bool | None = None
+    candidato_desde = 0.0
 
     while True:
         time.sleep(INTERVALO_SEG)
