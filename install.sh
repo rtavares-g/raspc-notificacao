@@ -45,7 +45,7 @@ if [ ! -f "$HOME/presenca-quarto/estado.json" ]; then
     echo "==> Aviso: $HOME/presenca-quarto/estado.json nao existe ainda - instale/inicie o presenca-quarto"
 fi
 
-sudo cp raspc-notificacao.service /etc/systemd/system/
+sed -e "s|__USER__|$USER|g" -e "s|__HOME__|$HOME|g" raspc-notificacao.service | sudo tee /etc/systemd/system/raspc-notificacao.service > /dev/null
 sudo systemctl daemon-reload
 sudo systemctl enable --now raspc-notificacao
 sudo systemctl restart raspc-notificacao
